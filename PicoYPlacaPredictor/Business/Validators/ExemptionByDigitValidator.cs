@@ -1,5 +1,4 @@
-﻿using PicoYPlacaPredictor.Business.Interfaces;
-using PicoYPlacaPredictor.Entities;
+﻿using PicoYPlacaPredictor.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PicoYPlacaPredictor.Business.Validators
 {
-    public class ExemptionByDigitValidator : ICirculationValidator
+    public class ExemptionByDigitValidator : BaseValidator
     {
         private static readonly Dictionary<DayOfWeek, List<int>> restrictionMap = new()
         {
@@ -19,7 +18,7 @@ namespace PicoYPlacaPredictor.Business.Validators
             { DayOfWeek.Friday,    new() { 9, 0 } }
         };
 
-        public bool CanCirculate(Vehicle vehicle)
+        public override bool CanCirculate(Vehicle vehicle)
         {
             var day = vehicle.Date.DayOfWeek;
             var lastDigit = GetLastDigit(vehicle.LicensePlate);

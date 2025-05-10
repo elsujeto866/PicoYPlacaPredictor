@@ -1,5 +1,4 @@
-﻿using PicoYPlacaPredictor.Business.Interfaces;
-using PicoYPlacaPredictor.Entities;
+﻿using PicoYPlacaPredictor.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PicoYPlacaPredictor.Business.Validators
 {
-    public class HolidayValidator : ICirculationValidator
+    public class HolidayValidator : BaseValidator
     {
         private readonly List<DateTime> holidays = new()
         {
@@ -25,7 +24,7 @@ namespace PicoYPlacaPredictor.Business.Validators
             new DateTime(2025, 12, 25)  // Navidad (jueves)
            
         };
-        public bool CanCirculate(Vehicle vehicle)
+        public override bool CanCirculate(Vehicle vehicle)
         {
             return !holidays.Contains(vehicle.Date.Date);
         }
