@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PicoYPlacaPredictor.Entities
 {
-    class Vehicle
+    public class Vehicle
     {
         public string LicensePlate { get; }
         public DateTime Date { get; }
