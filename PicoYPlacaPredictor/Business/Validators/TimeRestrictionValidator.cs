@@ -17,5 +17,11 @@ namespace PicoYPlacaPredictor.Business.Validators
         {
             return !IsWhthinRestrictedHours(vehicle, morning, evening);
         }
+
+        protected bool IsWhthinRestrictedHours(Vehicle vehicle, (TimeSpan Start, TimeSpan End) morning, (TimeSpan Start, TimeSpan End) evening)
+        {
+            return (vehicle.Time >= morning.Start && vehicle.Time <= morning.End)
+                || (vehicle.Time >= evening.Start && vehicle.Time <= evening.End);
+        }
     }   
 }
