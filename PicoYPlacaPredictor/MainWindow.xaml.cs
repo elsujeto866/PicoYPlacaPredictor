@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using PicoYPlacaPredictor.Business.Validators;
+using PicoYPlacaPredictor.Entities;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,14 @@ namespace PicoYPlacaPredictor
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly CompositeCirculationValidator _validator;
+
         public MainWindow()
         {
             InitializeComponent();
+            _validator = new CompositeCirculationValidator(); 
         }
+
+        
     }
 }
