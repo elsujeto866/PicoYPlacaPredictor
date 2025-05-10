@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PicoYPlacaPredictor.Business.Validators
 {
-    class HolidayValidator : ICirculationValidator
+    public class HolidayValidator : ICirculationValidator
     {
         private readonly List<DateTime> holidays = new()
         {
