@@ -85,7 +85,7 @@
                     <TextBox Grid.Column="1" x:Name="LicensePlateTextBox" TextChanged="LicensePlateTextBox_TextChanged"/>
                 </Grid>
 
-                <TextBlock Grid.Row="3" x:Name="LicensePlateError" Foreground="White" FontSize="12"/>
+                <TextBlock Grid.Row="3" x:Name="LicensePlateError" Foreground="#DA34AE" FontSize="12" FontFamily="Consolas"/>
 
                 <Grid Grid.Row="4" Margin="0 0 0 10">
                     <Grid.ColumnDefinitions>
@@ -96,7 +96,7 @@
                     <DatePicker Grid.Column="1" x:Name="DatePicker" />
                 </Grid>
 
-                <TextBlock Grid.Row="5" x:Name="DateError" Foreground="White" FontSize="12" />
+                <TextBlock Grid.Row="5" x:Name="DateError" Foreground="#DA34AE" FontSize="12" FontFamily="Consolas"/>
 
 
                 <Grid Grid.Row="6" Margin="0 0 0 10">
@@ -108,20 +108,20 @@
                     <TextBox Grid.Column="1" x:Name="TimeTextBox" TextChanged="TimeTextBox_TextChanged"/>
                 </Grid>
 
-                <TextBlock Grid.Row="7" x:Name="TimeError" Foreground="White" FontSize="12"/>
+                <TextBlock Grid.Row="7" x:Name="TimeError" Foreground="#DA34AE" FontSize="12" FontFamily="Consolas"/>
 
                 <StackPanel Grid.Row="8" Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Center">
-                    <Button Content="Verify" Width="100" Click="VerifyButton_Click" />
-                    <Button Content="Clear" Width="100" Margin="10 0 0 0" Click="ClearButton_Click"/>
+                    <Button Content="Verify" Width="100" Click="VerifyButton_Click" Background="#28AEED" BorderThickness="0" Foreground="White" FontSize="16" FontFamily="Consolas"/>
+                    <Button Content="Clear" Width="100" Margin="10 0 0 0" Click="ClearButton_Click" Background="#28AEED" BorderThickness="0" Foreground="White" FontSize="16" FontFamily="Consolas"/>
                 </StackPanel>
 
                 <TextBlock Grid.Row="9"
-   x:Name="ResultTextBlock"
-   FontSize="14"
-   FontWeight="Bold"
-   Text=""
-   HorizontalAlignment="Center"
-   Margin="0 10 0 0"/>
+                    x:Name="ResultTextBlock"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text=""
+                    HorizontalAlignment="Center"
+                    Margin="0 10 0 0"/>
 
             </Grid>
 
