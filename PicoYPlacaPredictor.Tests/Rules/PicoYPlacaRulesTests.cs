@@ -8,7 +8,7 @@ using PicoYPlacaPredictor.Business.Rules;
 
 namespace PicoYPlacaPredictor.Tests.Rules
 {
-    public class PicoYPlacaRulesValidatorTests
+    public class PicoYPlacaRulesTests
     {
         private PicoYPlacaRules _validator;
 
