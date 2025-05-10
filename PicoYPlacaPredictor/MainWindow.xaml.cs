@@ -23,33 +23,73 @@ namespace PicoYPlacaPredictor
         public MainWindow()
         {
             InitializeComponent();
-            _validator = new CompositeCirculationValidator(); 
+            _validator = new CompositeCirculationValidator();
         }
 
         private void VerifyButton_Click(object sender, RoutedEventArgs e)
         {
             var licensePlate = LicensePlateTextBox.Text;
-            var date = DatePicker.SelectedDate; 
+            var selectedDate = DatePicker.SelectedDate;
             var timeText = TimeTextBox.Text;
 
-            if (string.IsNullOrWhiteSpace(licensePlate) || string.IsNullOrWhiteSpace(timeText))
-            {
-                ResultTextBlock.Text = "⚠️ Por favor ingresa la placa y la hora.";
+            if (!ValidateInputs(out var plate, out var dateValue, out var time))
                 return;
-            }
 
-            if (!TimeSpan.TryParse(timeText, out var time))
-            {
-                ResultTextBlock.Text = "⚠️ Formato de hora inválido. Usa HH:mm (ej: 08:30)";
-                return;
-            }
-
-            var vehicle = new Vehicle(licensePlate, date.Value, time);
+            var vehicle = new Vehicle(licensePlate, dateValue.Value, time);
             bool canCirculate = _validator.CanCirculate(vehicle);
 
             ResultTextBlock.Text = canCirculate
                 ? "✅ Puede circular"
                 : "🚫 No puede circular";
         }
+
+        #region Validation Methods
+
+        private void ClearErrors()
+        {
+            LicensePlateError.Text = "";
+            DateError.Text = "";
+            TimeError.Text = "";
+            ResultTextBlock.Text = "";
+        }
+
+
+        private bool ValidateInputs(out string licensePlate, out DateTime? date, out TimeSpan time)
+        {
+            ClearErrors();
+            bool isValid = true;
+
+            licensePlate = LicensePlateTextBox.Text;
+            var selectedDate = DatePicker.SelectedDate;
+            var timeText = TimeTextBox.Text;
+            date = default;
+            time = default;
+
+            if (string.IsNullOrWhiteSpace(licensePlate))
+            {
+                LicensePlateError.Text = "⚠️ Ingrese una placa. Ej: ABC-1234";
+                isValid = false;
+            }
+
+            if (selectedDate == null)
+            {
+                DateError.Text = "⚠️ Seleccione una fecha.";
+                isValid = false;
+            }
+            else
+            {
+                date = selectedDate.Value;
+            }
+
+            if (!TimeSpan.TryParse(timeText, out time))
+            {
+                TimeError.Text = "⚠️ Ingrese hora válida (HH:mm). Ej: 08:30";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        #endregion
     }
 }
