@@ -26,7 +26,7 @@ namespace PicoYPlacaPredictor.Business.Validators
         };
         public override bool CanCirculate(Vehicle vehicle)
         {
-            return !holidays.Contains(vehicle.Date.Date);
+            return holidays.Contains(vehicle.Date.Date);
         }
     }
 }
