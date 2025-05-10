@@ -44,6 +44,38 @@ namespace PicoYPlacaPredictor
         }
 
         #region Validation Methods
+        private void TimeTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string raw = new string(TimeTextBox.Text.Where(char.IsDigit).ToArray());
+
+            if (raw.Length > 4)
+                raw = raw.Substring(0, 4);
+
+            string formatted = raw;
+
+            if (raw.Length >= 2)
+            {
+                formatted = raw.Insert(2, ":");
+            }
+
+           
+            if (TimeTextBox.Text != formatted)
+            {
+                int cursor = TimeTextBox.SelectionStart;
+                TimeTextBox.Text = formatted;
+                TimeTextBox.SelectionStart = Math.Min(formatted.Length, cursor + 1);
+            }
+
+          
+            if (formatted.Length == 5 && TimeSpan.TryParse(formatted, out _))
+            {
+                TimeError.Text = ""; 
+            }
+            else
+            {
+                TimeError.Text = "⚠️ Ingrese hora válida en formato HH:mm";
+            }
+        }
 
         private void LicensePlateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
