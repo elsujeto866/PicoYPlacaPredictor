@@ -12,4 +12,9 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Business\Interfaces\" />
+    <Folder Include="Business\Validators\" />
+  </ItemGroup>
+
 </Project>
