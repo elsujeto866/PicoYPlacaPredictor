@@ -35,7 +35,7 @@ namespace PicoYPlacaPredictor
             if (!ValidateInputs(out var plate, out var dateValue, out var time))
                 return;
 
-            var vehicle = new Vehicle(licensePlate, dateValue.Value, time);
+            var vehicle = new Vehicle(licensePlate, selectedDate.Value, time);
             bool canCirculate = _validator.CanCirculate(vehicle);
 
             ResultTextBlock.Text = canCirculate
@@ -45,6 +45,53 @@ namespace PicoYPlacaPredictor
 
         #region Validation Methods
 
+        private void LicensePlateTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            
+            int originalCaretIndex = LicensePlateTextBox.SelectionStart;
+
+            var raw = LicensePlateTextBox.Text.ToUpper().Replace("-", "").Trim();
+            var letters = "";
+            var digits = "";
+
+            foreach (char c in raw)
+            {
+                if (letters.Length < 3 && char.IsLetter(c))
+                {
+                    letters += c;
+                }
+                else if (letters.Length == 3 && digits.Length < 4 && char.IsDigit(c))
+                {
+                    digits += c;
+                }
+            }
+
+            
+            if (raw.Length >= 3 && letters.Length < 3)
+            {
+                LicensePlateError.Text = "⚠️ Los 3 primeros deben ser letras.";
+            }
+            else if (digits.Length < 3)
+            {
+                LicensePlateError.Text = "⚠️ Los 3 primeros deben ser letras e ingrese entre 3 y 4 dígitos después del guion.";
+            }
+            else
+            {
+                LicensePlateError.Text = "";
+            }
+
+            string formatted = letters;
+            if (letters.Length == 3)
+                formatted += "-" + digits;
+
+            
+            if (LicensePlateTextBox.Text != formatted)
+            {
+                LicensePlateTextBox.Text = formatted;
+                LicensePlateTextBox.SelectionStart = Math.Min(formatted.Length, formatted.Length); 
+            }
+        }
+
         private void ClearErrors()
         {
             LicensePlateError.Text = "";
@@ -52,7 +99,6 @@ namespace PicoYPlacaPredictor
             TimeError.Text = "";
             ResultTextBlock.Text = "";
         }
-
 
         private bool ValidateInputs(out string licensePlate, out DateTime? date, out TimeSpan time)
         {
