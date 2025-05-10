@@ -4,6 +4,14 @@ This is a desktop application built with **C# and WPF**, designed to predict whe
 
 ---
 
+## System requirementsOperating system: Windows 10 or higher
+* .NET 8.0 SDK
+* Visual Studio 2022 or newer
+* WPF support
+
+
+---
+
 ## 📊 Features
 
 * Validation based on:
