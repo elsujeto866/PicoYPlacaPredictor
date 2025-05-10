@@ -25,7 +25,7 @@ namespace PicoYPlacaPredictor
             InitializeComponent();
             _validator = new CompositeCirculationValidator();
         }
-
+        #region Botones
         private void VerifyButton_Click(object sender, RoutedEventArgs e)
         {
             var licensePlate = LicensePlateTextBox.Text;
@@ -44,6 +44,19 @@ namespace PicoYPlacaPredictor
 
             
         }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        #endregion
 
         #region Validation Methods
         /// <summary>
@@ -190,5 +203,9 @@ namespace PicoYPlacaPredictor
         }
 
         #endregion
+
+    
     }
+
+
 }
