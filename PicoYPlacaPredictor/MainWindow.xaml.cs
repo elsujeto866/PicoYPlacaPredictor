@@ -39,11 +39,33 @@ namespace PicoYPlacaPredictor
             bool canCirculate = _validator.CanCirculate(vehicle);
 
             ResultTextBlock.Text = canCirculate
-                ? "✅ Puede circular"
-                : "🚫 No puede circular";
+                ? "✅ Can Circulate"
+                : "🚫 Can't Circulate";
+
+            
         }
 
         #region Validation Methods
+        /// <summary>
+        /// Clears all input fields, error messages, and result display.
+        /// </summary>
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearFiels();
+        }
+
+        private void ClearFiels()
+        {
+            LicensePlateTextBox.Text = "";
+            DatePicker.SelectedDate = null;
+            TimeTextBox.Text = "";
+
+            LicensePlateError.Text = "";
+            DateError.Text = "";
+            TimeError.Text = "";
+            ResultTextBlock.Text = "";
+        }
+
         private void TimeTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             string raw = new string(TimeTextBox.Text.Where(char.IsDigit).ToArray());
@@ -73,7 +95,7 @@ namespace PicoYPlacaPredictor
             }
             else
             {
-                TimeError.Text = "⚠️ Ingrese hora válida en formato HH:mm";
+                TimeError.Text = "⚠️ Enter valid time in HH:mm format.";
             }
         }
 
@@ -101,11 +123,11 @@ namespace PicoYPlacaPredictor
             
             if (raw.Length >= 3 && letters.Length < 3)
             {
-                LicensePlateError.Text = "⚠️ Los 3 primeros deben ser letras.";
+                LicensePlateError.Text = "⚠️ The first 3 must be letters.";
             }
             else if (digits.Length < 3)
             {
-                LicensePlateError.Text = "⚠️ Los 3 primeros deben ser letras e ingrese entre 3 y 4 dígitos después del guion.";
+                LicensePlateError.Text = "⚠️ The first 3 must be letters and enter 3-4 digits after the hyphen.";
             }
             else
             {
@@ -114,9 +136,8 @@ namespace PicoYPlacaPredictor
 
             string formatted = letters;
             if (letters.Length == 3)
-                formatted += "-" + digits;
+                formatted += "-" + digits;        
 
-            
             if (LicensePlateTextBox.Text != formatted)
             {
                 LicensePlateTextBox.Text = formatted;
