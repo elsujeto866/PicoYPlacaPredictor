@@ -26,6 +26,30 @@ namespace PicoYPlacaPredictor
             _validator = new CompositeCirculationValidator(); 
         }
 
-        
+        private void VerifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var licensePlate = LicensePlateTextBox.Text;
+            var date = DatePicker.SelectedDate; 
+            var timeText = TimeTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(licensePlate) || string.IsNullOrWhiteSpace(timeText))
+            {
+                ResultTextBlock.Text = "⚠️ Por favor ingresa la placa y la hora.";
+                return;
+            }
+
+            if (!TimeSpan.TryParse(timeText, out var time))
+            {
+                ResultTextBlock.Text = "⚠️ Formato de hora inválido. Usa HH:mm (ej: 08:30)";
+                return;
+            }
+
+            var vehicle = new Vehicle(licensePlate, date.Value, time);
+            bool canCirculate = _validator.CanCirculate(vehicle);
+
+            ResultTextBlock.Text = canCirculate
+                ? "✅ Puede circular"
+                : "🚫 No puede circular";
+        }
     }
 }

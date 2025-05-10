@@ -44,7 +44,12 @@
             <TextBox Grid.Column="1" x:Name="TimeTextBox"/>
         </Grid>
 
-        <Button Grid.Row="3" Content="Verificar" Width="100" HorizontalAlignment="Center" Margin="0 10 0 10"/>
+        <Button Grid.Row="3" 
+                Content="Verificar" 
+                Width="100" 
+                HorizontalAlignment="Center" 
+                Margin="0 10 0 10"
+                Click="VerifyButton_Click"/>
         
         <TextBlock Grid.Row="4"
            x:Name="ResultTextBlock"
