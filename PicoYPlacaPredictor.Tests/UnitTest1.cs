@@ -1,4 +1,4 @@
-namespace PicoPlacaPredictor.Tests
+namespace PicoYPlacaPredictor.Tests
 {
     public class Tests
     {
