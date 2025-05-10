@@ -12,17 +12,14 @@ namespace PicoYPlacaPredictor.Business.Validators
     public class CompositeCirculationValidator : ICirculationValidator
     {
         private readonly ICirculationValidator _exemptions;
-        private readonly IEnumerable<ICirculationValidator> _rules;
+        private readonly ICirculationValidator _rules;
 
         // Constructor por defecto que inicializa todo el sistema
         public CompositeCirculationValidator()
         {
             _exemptions = new ExemptionsRules();
 
-            _rules = new List<ICirculationValidator>
-            {
-                new PicoYPlacaRules()
-            };
+            _rules = new PicoYPlacaRules();
         }
 
        
@@ -34,7 +31,7 @@ namespace PicoYPlacaPredictor.Business.Validators
             return true;
 
             // 2. If the vehicle is not exempted, check the rules
-            return _rules.All(r => r.CanCirculate(vehicle));
+            return _rules.CanCirculate(vehicle);
         }
     }
 }
