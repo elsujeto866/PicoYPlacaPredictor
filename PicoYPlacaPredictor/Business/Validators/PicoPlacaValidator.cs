@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PicoYPlacaPredictor.Business.Interfaces;
 
 namespace PicoYPlacaPredictor.Business
 {
-    public class PicoPlacaValidator : BaseValidator
+    public class PicoPlacaValidator : BaseValidator, ICirculationValidator
+
     {
         private static readonly Dictionary<DayOfWeek, List<int>> restrictionMap = new()
         {
