@@ -24,6 +24,7 @@ namespace PicoYPlacaPredictor
         {
             InitializeComponent();
             _validator = new CompositeCirculationValidator();
+            DatePicker.SelectedDate = DateTime.Today;
         }
         #region Botones
         private void VerifyButton_Click(object sender, RoutedEventArgs e)
@@ -184,13 +185,13 @@ namespace PicoYPlacaPredictor
 
             if (string.IsNullOrWhiteSpace(licensePlate))
             {
-                LicensePlateError.Text = "⚠️ Ingrese una placa. Ej: ABC-1234";
+                LicensePlateError.Text = "⚠️ Enter a license plate. E.g., ABC-1234";
                 isValid = false;
             }
 
             if (selectedDate == null)
             {
-                DateError.Text = "⚠️ Seleccione una fecha.";
+                DateError.Text = "⚠️ Select a date";
                 isValid = false;
             }
             else
@@ -200,7 +201,7 @@ namespace PicoYPlacaPredictor
 
             if (!TimeSpan.TryParse(timeText, out time))
             {
-                TimeError.Text = "⚠️ Ingrese hora válida (HH:mm). Ej: 08:30";
+                TimeError.Text = "⚠️ Enter a valid time (HH:mm). E.g., 08:30";
                 isValid = false;
             }
 
