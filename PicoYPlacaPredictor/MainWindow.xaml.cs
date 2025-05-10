@@ -38,6 +38,11 @@ namespace PicoYPlacaPredictor
             var vehicle = new Vehicle(licensePlate, selectedDate.Value, time);
             bool canCirculate = _validator.CanCirculate(vehicle);
 
+            ResultTextBlock.Foreground = canCirculate
+                ? new SolidColorBrush(Color.FromRgb(57, 255, 20)) 
+                : new SolidColorBrush(Color.FromRgb(255, 0, 0));
+
+
             ResultTextBlock.Text = canCirculate
                 ? "✅ Can Circulate"
                 : "🚫 Can't Circulate";
